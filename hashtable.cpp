@@ -13,6 +13,8 @@ Hashtable::Hashtable(){
     count = 0;
     for(int row{0}; row < HASHTABLESIZE; row++){
         table[row] = new Node;
+        table[row]->data.id = 0;
+        table[row]->data.information = "";
     }
 }
 
@@ -36,12 +38,35 @@ string Hashtable::getData(int id){
     return foundData;
 }
 
+Node* Hashtable::createNode(int id, string* information){
+    Node *newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *information;
+    newNode->next = NULL;
+    return newNode;
+}
+
 bool Hashtable::insertEntry(int id, string* information){
     bool inserted = false;
     int row = hash(id); //derives row to set value in
-    if(table[row]->addNode(id, information)){
-        count++;
-        inserted = true;
+    if(id > 0 and *information != ""){
+        Node* current = table[row];
+        if(current->data.id == 0){
+            table[row] = createNode(id, information);
+            inserted = true;
+            count++;
+        }
+        else{
+            while(current and current->next != NULL){
+                current = current->next;
+            }
+            if(current->next == NULL){
+                Node* insertNode = createNode(id, information);
+                current->next = insertNode;
+                inserted = true;
+                count++;
+            }
+        }
     }
     return inserted;
 }

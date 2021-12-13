@@ -40,6 +40,7 @@ class Hashtable{
         int getCount();
         void printTable();
     private:
+        Node* createNode(int, string*)
         int hash(int);
         int count;
         Node* table[HASHTABLESIZE];
