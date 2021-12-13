@@ -10,8 +10,6 @@
 
 #include "string"
 #include <iostream>
-#include "linkedlist.h"
-#include "data.h"
 
 #define HASHTABLESIZE 15
 
@@ -34,13 +32,13 @@ class Hashtable{
         Hashtable();
         ~Hashtable();
 
-        bool insertEntry(int, string*);
+        bool addEntry(int, string*);
         string getData(int);
         bool removeEntry(int);
         int getCount();
         void printTable();
     private:
-        Node* createNode(int, string*)
+        Node* createNode(int, string*);
         int hash(int);
         int count;
         Node* table[HASHTABLESIZE];

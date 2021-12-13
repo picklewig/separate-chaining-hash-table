@@ -14,7 +14,7 @@ Hashtable::Hashtable(){
     for(int row{0}; row < HASHTABLESIZE; row++){
         table[row] = new Node;
         table[row]->data.id = 0;
-        table[row]->data.information = "";
+        table[row]->data.data = "";
     }
 }
 
@@ -46,7 +46,7 @@ Node* Hashtable::createNode(int id, string* information){
     return newNode;
 }
 
-bool Hashtable::insertEntry(int id, string* information){
+bool Hashtable::addEntry(int id, string* information){
     bool inserted = false;
     int row = hash(id); //derives row to set value in
     if(id > 0 and *information != ""){
@@ -80,9 +80,27 @@ void Hashtable::printTable(){
 bool Hashtable::removeEntry(int id){
     bool removed = false;
     int row = hash(id);
-    if(id > 0 and table[row]->deleteNode(id)){ //needs validation parameter because deletenode doesnt check
-        count--;
-        removed = true;
+    if(id > 0){
+        Node* current = table[row];
+        Node* previous;
+        while(current and id != current->data.id){
+            previous = current;
+            current = current->next;
+        }
+        if(current and id == current->data.id){
+            if(previous != NULL and current->next == NULL){
+                previous->next = NULL;
+            }
+            else if(current->next != NULL and previous == NULL){
+                table[row] = current->next;
+            }
+            else if(current->next != NULL and previous != NULL){
+                previous->next = current->next;
+            }
+            delete current;
+            removed = true;
+            count--;
+        }
     }
     return removed;
 }
