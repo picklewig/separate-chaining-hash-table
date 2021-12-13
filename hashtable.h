@@ -36,7 +36,7 @@ class Hashtable{
         string getEntry(int);
         bool removeEntry(int);
         int getCount();
-        void printTable();
+        void displayTable();
     private:
         Node* createNode(int, string*);
         int hash(int);

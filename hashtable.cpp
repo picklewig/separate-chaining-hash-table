@@ -76,9 +76,23 @@ bool Hashtable::addEntry(int id, string* information){
     return inserted;
 }
 
-void Hashtable::printTable(){
+void Hashtable::displayTable(){
     for(int row{0}; row < HASHTABLESIZE; row++){
-        table[row]->printList();
+        Node* current = table[row];
+        int nodeNumber = 0;
+        while(current){
+            nodeNumber++
+            cout << current->data.id;
+            if(current->next != NULL){
+                cout << " --> ";
+            } else {
+                cout << endl;
+            }
+            current = current->next;
+        }
+        if(nodeNumber == 0){
+            cout << "EMPTY" << endl;
+        }
     }
 }
 
