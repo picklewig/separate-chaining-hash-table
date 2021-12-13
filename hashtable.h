@@ -1,8 +1,7 @@
 /**************
  * author: Isaac Shepherd
  * file: hashtable.h
- * holds class prototype and constants used in hastable.cpp. includes linklist.h to access LinkedList class
- * and call its methods to preform functions for hashtable
+ * holds class prototype and constants used in hastable.cpp.
  **************/
 
 #ifndef HASHTABLE_H

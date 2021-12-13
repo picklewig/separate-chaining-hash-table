@@ -15,6 +15,7 @@ Hashtable::Hashtable(){
         table[row] = new Node;
         table[row]->data.id = 0;
         table[row]->data.data = "";
+        table[row]->next = NULL;
     }
 }
 
@@ -65,7 +66,7 @@ bool Hashtable::addEntry(int id, string* information){
             while(current and current->next != NULL){
                 current = current->next;
             }
-            if(current->next == NULL){
+            if(current->next == NULL and current->data.id != id){
                 Node* insertNode = createNode(id, information);
                 current->next = insertNode;
                 inserted = true;
@@ -102,19 +103,23 @@ bool Hashtable::removeEntry(int id){
     int row = hash(id);
     if(id > 0){
         Node* current = table[row];
-        Node* previous;
-        while(current and id != current->data.id){
+        Node* previous = NULL;
+        while(current and id != current->data.id and current->next != NULL){
             previous = current;
             current = current->next;
         }
         if(current and id == current->data.id){
-            if(previous != NULL and current->next == NULL){
+            if(current == table[row]){
+                table[row]->data.id = 0;
+                table[row]->data.data = "";
+            }
+            else if(previous != NULL and current->next == NULL and current != table[row]){//tail
                 previous->next = NULL;
             }
-            else if(current->next != NULL and previous == NULL){
+            else if(current->next != NULL and previous == NULL and current != table[row]){//head
                 table[row] = current->next;
             }
-            else if(current->next != NULL and previous != NULL){
+            else if(current->next != NULL and previous != NULL and current != table[row]){//middle
                 previous->next = current->next;
             }
             delete current;
