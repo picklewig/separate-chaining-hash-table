@@ -80,12 +80,13 @@ void Hashtable::displayTable(){
     for(int row{0}; row < HASHTABLESIZE; row++){
         Node* current = table[row];
         int nodeNumber = 0;
+
         while(current){
-            nodeNumber++
+            nodeNumber++;
             cout << current->data.id;
             if(current->next != NULL){
                 cout << " --> ";
-            } else {
+            }else{
                 cout << endl;
             }
             current = current->next;

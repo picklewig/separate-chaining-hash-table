@@ -55,25 +55,25 @@ int main() {
     cout << "Finding the number of entries in table..." << endl;
     MyTable.getCount();
     cout << "Printing table contents..." << endl;
-    MyTable.printTable();
+    MyTable.displayTable();
     // try and put ALL the test data into the table and show what happens
     cout << endl << "Adding entries now..." << endl;
     for(int index{0}; index < testdatasize; index++){
-        if(MyTable.insertEntry(ids[index], &strs[index])){
+        if(MyTable.addEntry(ids[index], &strs[index])){
             cout << ids[index] << " was added to table" << endl;
         }else{
             cout << ids[index] << " was NOT added to table" << endl;
         }
     }
     cout << "Displaying hashtable with new entries: " << endl << endl;
-    MyTable.printTable();
+    MyTable.displayTable();
     // continue using and testing your table, add and remove data,
     // do whatever it takes to full test your object and prove it
     // is robust and can handle all use cases.
 
     cout << endl << "Getting data strings from table..." << endl;
     for(int index{0}; index < testdatasize; index++){
-        cout << "Data for list object " << ids[index] << " is: " << MyTable.getData(ids[index]) << endl;
+        cout << "Data for list object " << ids[index] << " is: " << MyTable.getEntry(ids[index]) << endl;
     }
 
     cout << endl << "Entry count is currently: " << MyTable.getCount() << endl;
@@ -88,23 +88,23 @@ int main() {
     }
     cout << endl << "Entry count is currently: " << MyTable.getCount() << endl;
     cout << "Printing table contents..." << endl;
-    MyTable.printTable();
+    MyTable.displayTable();
 
     cout << endl << "testing add entry exclusively on exception cases" << endl;
     cout << "Adding " << ids[testdatasize-3] << " to table...";
-    if(MyTable.insertEntry(ids[testdatasize-3], &strs[testdatasize-3])){
+    if(MyTable.addEntry(ids[testdatasize-3], &strs[testdatasize-3])){
         cout << " Success" << endl;
     }else{
         cout << " Failed" << endl;
     }
     cout << "Adding " << ids[testdatasize-2] << " to table...";
-    if(MyTable.insertEntry(ids[testdatasize-2], &strs[testdatasize-2])){
+    if(MyTable.addEntry(ids[testdatasize-2], &strs[testdatasize-2])){
         cout << " Success" << endl;
     }else{
         cout << " Failed" << endl;
     }
     cout << "Adding " << ids[testdatasize-1] << " to table...";
-    if(MyTable.insertEntry(ids[testdatasize-1], &strs[testdatasize-1])){
+    if(MyTable.addEntry(ids[testdatasize-1], &strs[testdatasize-1])){
         cout << " Success" << endl;
     }else{
         cout << " Failed" << endl;
