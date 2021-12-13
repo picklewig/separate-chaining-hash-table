@@ -28,12 +28,17 @@ int Hashtable::getCount(){
     return count;
 }
 
-string Hashtable::getData(int id){
+string Hashtable::getEntry(int id){
     string foundData = "";
-    Data emptyStruct;
     int row = hash(id);
-    if(id > 0 and table[row]->getNode(id, &emptyStruct)){//needs validation parameter because getnode doesnt check
-        foundData = emptyStruct.data;
+    if(id > 0){
+        Node* current = table[row];
+        while(current->next != NULL and id != current->data.id){
+            current = current->next;
+        }
+        if(id == current->data.id){
+            foundData = current->data.data;
+        }
     }
     return foundData;
 }

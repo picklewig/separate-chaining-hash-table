@@ -33,7 +33,7 @@ class Hashtable{
         ~Hashtable();
 
         bool addEntry(int, string*);
-        string getData(int);
+        string getEntry(int);
         bool removeEntry(int);
         int getCount();
         void printTable();
